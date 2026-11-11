@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VibeWave — локальный аудиоплеер для macOS. MP3, FLAC, WAV, AAC, ALAC и Ogg, ReplayGain, умные плейлисты и редактор тегов в стиле Windows 95." data-en-content="VibeWave is a local audio player for macOS. MP3, FLAC, WAV, AAC, ALAC and Ogg, ReplayGain, smart playlists and tag editing in a Windows 95–style interface.">
+  <meta name="theme-color" content="#086568">
+  <title data-en="VibeWave — retro player for macOS">VibeWave — ретро-плеер для macOS</title>
+  <link rel="canonical" href="https://slipcast-dev.github.io/vibewave-website/">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Спрайт переиспользуется в заголовках окон, кнопках и карточках. -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="wave" viewBox="0 0 24 24"><path d="M2 13h3V9h3v8h3V4h3v16h3V8h3v5h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/></symbol>
+    <symbol id="disc" viewBox="0 0 24 24"><path fill="#8ff4d0" stroke="#111d24" d="M8 2h8l6 6v8l-6 6H8l-6-6V8z"/><path fill="#43a8bd" d="m4 15 5-4 4 4-4 5H8zm11-6 3-4 3 4v3l-4 3-3-2z"/><path fill="white" d="M8 4h6l-4 5-3 1-2-3z"/><path fill="#17232d" d="M10 9h4v1h1v4h-1v1h-4v-1H9v-4h1z"/><path fill="white" d="M11 11h2v2h-2z"/></symbol>
+    <symbol id="sliders" viewBox="0 0 24 24"><path fill="#152d37" d="M2 2h20v20H2z"/><path stroke="#82edc8" stroke-width="2" d="M6 5v14m6-14v14m6-14v14"/><path stroke="#faf9ec" stroke-width="3" d="M4 10h4m2 5h4m2-7h4"/></symbol>
+    <symbol id="folder" viewBox="0 0 24 24"><path fill="#ffd66b" stroke="#2e260e" d="M2 5h8l2 3h10v12H2z"/><path fill="#fff0a2" d="M3 9h18v3H3z"/><path fill="#a27626" d="M3 18h18v1H3z"/></symbol>
+    <symbol id="download" viewBox="0 0 24 24"><path fill="currentColor" d="M10 3h4v9h4l-6 6-6-6h4zM4 17h2v3h12v-3h2v5H4z"/></symbol>
+    <symbol id="external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M13 4h7v7M20 4l-9 9m-1-8H5v14h14v-5"/></symbol>
+    <symbol id="document" viewBox="0 0 24 24"><path fill="#fff" stroke="#263046" d="M5 2h9l5 5v15H5z"/><path fill="none" stroke="#263046" d="M14 2v6h5M8 12h8m-8 4h8"/></symbol>
+  </svg>
+  <div class="desktop">
+    <main>
+      <section class="window hero" aria-labelledby="hero-title">
+        <div class="titlebar">
+          <span><svg class="icon"><use href="#wave"/></svg> <span data-en="VibeWave — player for macOS">VibeWave — плеер для macOS</span></span>
+          <div class="titlebar-actions">
+            <button type="button" id="switch-language" class="language-button" aria-label="Переключить на английский" data-en-aria-label="Switch to Russian" hidden><span lang="en" data-en="RU" data-en-lang="ru">EN</span></button>
+            <span class="window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </div>
+        </div>
+        <div class="hero-body">
+          <div class="hero-copy">
+            <h1 id="hero-title">VibeWave</h1>
+            <p class="lead"><span data-en="Retro player">Ретро-плеер</span><br><span data-en="for macOS">для macOS</span></p>
+            <p class="description" data-en="Your local music, your way. Smart playlists, tag editing and sound you can fine-tune.">Музыка с вашего диска. Умные плейлисты, редактор тегов и звук под ваш вкус.</p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/Slipcast-dev/VibeWave/releases/download/v2.1.0/VibeWave-2.1.0-macos-universal.dmg"><svg class="icon"><use href="#download"/></svg> <span data-en="Download v2.1.0">Скачать v2.1.0</span></a>
+              <a class="button" href="https://github.com/Slipcast-dev/VibeWave">GitHub <svg class="icon"><use href="#external"/></svg></a>
+            </div>
+            <p class="compatibility"><span class="status-light" aria-hidden="true"></span> <span data-en="macOS 13+ · Apple Silicon and Intel">macOS 13+ · Apple Silicon и Intel</span></p>
+            <p class="formats" data-en="MP3 · FLAC · WAV · Wave64 · AIFF · AAC · ALAC · CAF · AU · Ogg">MP3 · FLAC · WAV · Wave64 · AIFF · AAC · ALAC · CAF · AU · Ogg</p>
+          </div>
+
+          <figure class="showcase">
+            <!-- Стилизованная иллюстрация. Реальные снимки приложения доступны отдельной кнопкой. -->
+            <div class="stage" aria-hidden="true">
+              <div class="window player">
+                <div class="titlebar"><span><svg class="icon"><use href="#wave"/></svg> VibeWave</span><span class="window-controls"><i>_</i><i>□</i><i>×</i></span></div>
+                <div class="player-body">
+                  <div class="display">
+                    <div class="time"><span>▶</span> 01:24<small>FLAC &nbsp;/&nbsp; 44.1 kHz</small></div>
+                    <svg class="oscilloscope" viewBox="0 0 180 62" preserveAspectRatio="none">
+                      <path d="M0 34h12V32h7v4h6V27h7v13h6V16h6v35h6V8h6v42h6V23h6v15h6V29h6v7h6V25h6v16h6V16h6v30h6V8h6v44h6V24h6v13h6V26h6v15h6V30h6v6h6V33h8" fill="none" stroke="#85ffd2" stroke-width="2" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                  </div>
+                  <div class="seek"><span></span></div>
+                  <div class="transport"><span><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2 2h1v8H2zM10 2 4 6l6 4z"/></svg></span><span>▶</span><span>Ⅱ</span><span>■</span><span><svg viewBox="0 0 12 12" width="11" height="11"><path d="M10 2h1v8h-1zM2 2l6 4-6 4z"/></svg></span><span class="eq-key">EQ</span></div>
+                  <div class="tracklist">
+                    <div><span>01 &nbsp; Midnight Drive.flac</span><span>3:42</span></div>
+                    <div><span>02 &nbsp; After Hours.mp3</span><span>4:08</span></div>
+                    <div><span>03 &nbsp; Sea of Signals.flac</span><span>5:11</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="window eq">
+                <div class="titlebar"><span data-en="Equalizer">Эквалайзер</span><span class="window-controls"><i>×</i></span></div>
+                <div class="eq-face">
+                  <div class="eq-bars">
+                    <i style="--level:63%"></i><i style="--level:72%"></i><i style="--level:56%"></i><i style="--level:45%"></i><i style="--level:30%"></i><i style="--level:43%"></i><i style="--level:56%"></i><i style="--level:67%"></i><i style="--level:74%"></i><i style="--level:57%"></i>
+                  </div>
+                  <div class="eq-labels"><span data-en="32 Hz">32 Гц</span><span data-en="10 BANDS">10 ПОЛОС</span><span data-en="16 kHz">16 кГц</span></div>
+                </div>
+              </div>
+            </div>
+            <figcaption><span><span class="status-light" aria-hidden="true"></span> <span data-en="Interface illustration">Иллюстрация интерфейса</span></span><button type="button" id="show-shots" class="text-button"><span data-en="App screenshots">Скриншоты приложения</span> <svg class="icon"><use href="#external"/></svg></button></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="window features" id="features" aria-labelledby="features-title">
+        <div class="titlebar"><h2 id="features-title"><svg class="icon"><use href="#folder"/></svg> <span data-en="Features">Возможности</span></h2></div>
+        <div class="feature-list">
+          <article><span class="feature-icon"><svg><use href="#disc"/></svg></span><div><h3 data-en="Local music">Локальная музыка</h3><p data-en="MP3, FLAC, WAV, Wave64, AIFF, AAC, ALAC, CAF, AU and Ogg Opus/Vorbis. No account required.">MP3, FLAC, WAV, Wave64, AIFF, AAC, ALAC, CAF, AU и Ogg Opus/Vorbis. Без аккаунта.</p></div></article>
+          <article><span class="feature-icon"><svg><use href="#sliders"/></svg></span><div><h3 data-en="Fine-tune your sound">Звук под ваш вкус</h3><p data-en="10-band EQ, 9 built-in presets and custom presets. ReplayGain, gapless playback and crossfade.">10 полос EQ, 9 готовых и свои пресеты. ReplayGain, воспроизведение без пауз и плавное сведение.</p></div></article>
+          <article><span class="feature-icon"><svg><use href="#folder"/></svg></span><div><h3 data-en="Smart music library">Умная медиатека</h3><p data-en="Folders and playlists, search, filters and smart playlists. Ratings and listening history.">Папки и плейлисты, поиск, фильтры и умные списки. Оценки и история прослушивания.</p></div></article>
+          <article><span class="feature-icon"><svg><use href="#document"/></svg></span><div><h3 data-en="Playlist exchange">Перенос плейлистов</h3><p data-en="Import and export M3U, M3U8 and PLS. Relative paths let playlists travel with your music.">Импорт и экспорт M3U, M3U8 и PLS. Относительные пути для переноса списка вместе с музыкой.</p></div></article>
+          <article><span class="feature-icon"><svg><use href="#disc"/></svg></span><div><h3 data-en="Tags and artwork">Теги и обложки</h3><p data-en="Single and batch MP3/FLAC tag and artwork editing. Read-only MPEG-4 Audio and Ogg tags.">Одиночная и пакетная правка MP3/FLAC. Теги MPEG-4 Audio и Ogg доступны для чтения.</p></div></article>
+          <article><span class="feature-icon"><svg><use href="#wave"/></svg></span><div><h3 data-en="Playback controls">Удобное управление</h3><p data-en="Shuffle, repeat track and queue. Global shortcuts, media keys and automatic updates.">Перемешивание, повтор трека и очереди. Глобальные сочетания, медиаклавиши и автообновление.</p></div></article>
+        </div>
+      </section>
+
+
+    </main>
+  </div>
+
+  <footer class="taskbar">
+    <div class="taskbar-inner">
+      <a class="task-link" href="https://github.com/Slipcast-dev/VibeWave/blob/main/DOCUMENTATION.md" data-en-href="https://github.com/Slipcast-dev/VibeWave/blob/main/README.en.md"><svg class="icon"><use href="#document"/></svg> <span data-en="Documentation">Документация</span></a>
+    </div>
+  </footer>
+
+  <dialog id="screenshots" class="window" aria-labelledby="screenshots-title">
+    <div class="titlebar">
+      <h2 id="screenshots-title" data-en="VibeWave screenshots">Скриншоты VibeWave</h2>
+      <form method="dialog"><button class="close-button" aria-label="Закрыть" data-en-aria-label="Close">×</button></form>
+    </div>
+    <div class="shot-grid">
+      <figure><img src="assets/player.png" data-en-src="assets/player-en.png" width="880" height="1280" loading="lazy" alt="Окно VibeWave с тестовым плейлистом" data-en-alt="VibeWave window with a sample playlist"><figcaption data-en="Player and playlist">Плеер и плейлист</figcaption></figure>
+      <figure><img src="assets/equalizer.png" data-en-src="assets/equalizer-en.png" width="980" height="460" loading="lazy" alt="Эквалайзер VibeWave с десятью полосами" data-en-alt="VibeWave 10-band equalizer"><figcaption data-en="Equalizer">Эквалайзер</figcaption></figure>
+    </div>
+  </dialog>
+  <script>
+    const languageKey = 'vibewave-site-language';
+    const languageButton = document.querySelector('#switch-language');
+
+    // Русские строки остаются в HTML, чтобы страница читалась и без JavaScript.
+    // Храним исходные значения, чтобы переключение обратно восстанавливало текст и атрибуты.
+    const translations = ['textContent', 'content', 'aria-label', 'lang', 'href', 'alt', 'src'].flatMap(attribute => {
+      const isText = attribute === 'textContent';
+      const source = isText ? 'data-en' : 'data-en-' + attribute;
+      return Array.from(document.querySelectorAll('[' + source + ']'), element => ({
+        element,
+        attribute,
+        ru: isText ? element.textContent : element.getAttribute(attribute),
+        en: element.getAttribute(source),
+      }));
+    });
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      for (const { element, attribute, ...values } of translations) {
+        if (attribute === 'textContent') {
+          element.textContent = values[language];
+        } else if (element.getAttribute(attribute) !== values[language]) {
+          element.setAttribute(attribute, values[language]);
+        }
+      }
+    }
+
+    // Браузер передаёт языки в порядке предпочтения. Учитываем региональные варианты.
+    const browserLanguage = [...(navigator.languages ?? []), navigator.language]
+      .map(locale => locale?.toLowerCase().split('-')[0])
+      .find(language => language === 'ru' || language === 'en') ?? 'en';
+    let savedLanguage;
+    try {
+      savedLanguage = localStorage.getItem(languageKey);
+    } catch {
+      // В некоторых браузерах локальные файлы или приватный режим ограничивают хранилище.
+    }
+    applyLanguage(savedLanguage === 'ru' || savedLanguage === 'en' ? savedLanguage : browserLanguage);
+    languageButton.hidden = false;
+    languageButton.addEventListener('click', () => {
+      const language = document.documentElement.lang === 'ru' ? 'en' : 'ru';
+      applyLanguage(language);
+      try {
+        localStorage.setItem(languageKey, language);
+      } catch {
+        // Переключение действует в текущей вкладке даже без доступа к хранилищу.
+      }
+    });
+
+    // Нативный диалог возвращает фокус на кнопку и закрывается по Escape.
+    const screenshots = document.querySelector('#screenshots');
+    document.querySelector('#show-shots').addEventListener('click', () => screenshots.showModal());
+  </script>
+</body>
+</html>
